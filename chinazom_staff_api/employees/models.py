@@ -29,7 +29,7 @@ class Address(models.Model):
 class Manager(StaffBase):
     department = models.CharField(max_length=255)
     has_company_card = models.BooleanField(default=True)
-    address = models.OneToOneField(Address, on_delete=models.CASCADE, related_name='manager_address')
+    address = models.OneToOneField(Address, on_delete=models.CASCADE, related_name='manager_address', null=True)
 
     def get_role_label(self):
         return "Manager"
@@ -42,7 +42,7 @@ class Intern(StaffBase):
     internship_end = models.CharField(max_length=255)
     internship_start = models.CharField(max_length=255)
     mentor = models.OneToOneField(Manager, on_delete=models.CASCADE, related_name='intern_mentee')
-    address= models.OneToOneField(Address, on_delete=models.CASCADE, related_name='intern_address')
+    address= models.OneToOneField(Address, on_delete=models.CASCADE, related_name='intern_address', null=True)
 
     def get_role_label(self):
         return "Intern"
