@@ -6,13 +6,8 @@ class StaffBaseSerializer(serializers.ModelSerializer):
         model = StaffBase
         fields = '__all__'
 
-        def get_role(self, specific_role):
-            if specific_role == 'Manager':
-                return 'Manager'
-            elif specific_role == 'Intern':
-                return 'Intern'
-            else:
-                return 'Staff'
+        def get_role(self, obj):
+            return obj.get_role_label()
 
 class ManagerSerializer(serializers.ModelSerializer):
     staffBase = StaffBaseSerializer()
@@ -21,14 +16,7 @@ class ManagerSerializer(serializers.ModelSerializer):
         model = Manager
         fields = '__all__'
 
-        @overide
-        def get_role(self, specific_role):
-            if specific_role == 'Manager':
-                return 'Manager'
-            elif specific_role == 'Intern':
-                return 'Intern'
-            else:
-                return 'Staff'
+    
 
 class InternSerializer(serializers.ModelSerializer):
     staffBase = StaffBaseSerializer()
@@ -38,13 +26,4 @@ class InternSerializer(serializers.ModelSerializer):
         model = Intern
         fields = '__all__'
 
-        @overide
-        def get_role(self, specific_role):
-            if specific_role == 'Manager':
-                return 'Manager'
-            elif specific_role == 'Intern':
-                return 'Intern'
-            else:
-                return 'Staff'
-
-    
+   
