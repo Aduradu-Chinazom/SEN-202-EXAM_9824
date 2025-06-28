@@ -2,16 +2,13 @@ from django.shortcuts import render
 
 from rest_framework import viewsets
 from .models import StaffBase, Manager, Intern
-from .serializers import StaffBaseSerializer, ManagerSerializer, InternSerializer
+from .serializers import StaffBaseSerializer
+from rest_framework import response
+from rest_framework import APIview
 
-class StaffBaseViewSet(viewsets.ModelViewSet):
-    queryset = StaffBase.objects.all()
-    serializer_class = StaffBaseSerializer
-
-class ManagerViewSet(viewsets.ModelViewSet):
-    queryset = Manager.objects.all()
-    serializer_class = ManagerSerializer
-
-class InternViewSet(viewsets.ModelViewSet):
-    queryset = Intern.objects.all()
-    serializer_class = InternSerializer
+class StaffRoleView(APIview):
+    def get(self, request):
+        staff = list(Manager.objects.all()) + list(Intern.objects.all())
+        serializer = StaffBaseSerializer(staff, many=True)
+        return response(serializer.data)
+        

@@ -1,6 +1,6 @@
 from django.urls import path
-from .views import StaffBaseViewSet
+from .views import StaffRoleView
 
 urlpatterns = [
-    path('staff/', StaffBaseViewSet.as_view(), name='staff-list'),
+    path('staff/', StaffRoleView.as_view(), name='staff-list'),
 ]
