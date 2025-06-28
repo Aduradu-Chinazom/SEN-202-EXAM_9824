@@ -1,4 +1,5 @@
 # Byte-compiled / optimized / DLL files
+/chinazom_sen202_env
 __pycache__/
 *.py[codz]
 *$py.class
